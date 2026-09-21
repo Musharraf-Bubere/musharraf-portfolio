@@ -113,7 +113,7 @@ setTimeout(typeEffect, 1000);
 
 // Add fade-in class to all animatable elements
 const animateTargets = document.querySelectorAll(
-  '.skill-category, .project-card, .experience-card, .cert-card, .stat, .about-text, .about-image, .contact-item'
+  '.skill-category, .project-card, .case-study, .experience-card, .cert-card, .stat, .about-text, .about-image, .contact-item'
 );
 
 animateTargets.forEach(el => {
