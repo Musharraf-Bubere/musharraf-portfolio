@@ -64,11 +64,11 @@ window.addEventListener('scroll', () => {
    ========================================== */
 
 const taglines = [
-  'AI Builder & Data Scientist',
-  'Machine Learning Engineer',
+  'AI Engineer',
   'Generative AI Developer',
-  'Data Analyst & Storyteller',
-  'Problem Solver with Python 🐍'
+  'Agentic AI Builder',
+  'Machine Learning Engineer',
+  'Data Scientist'
 ];
 
 const taglineEl = document.querySelector('.hero-tagline');
@@ -113,7 +113,7 @@ setTimeout(typeEffect, 1000);
 
 // Add fade-in class to all animatable elements
 const animateTargets = document.querySelectorAll(
-  '.skill-category, .project-card, .cert-card, .blog-card, .stat, .about-text, .about-image, .contact-item'
+  '.skill-category, .project-card, .experience-card, .cert-card, .stat, .about-text, .about-image, .contact-item'
 );
 
 animateTargets.forEach(el => {
@@ -134,18 +134,31 @@ animateTargets.forEach(el => observer.observe(el));
 
 
 /* ==========================================
-   5. CONTACT FORM — success message
+   5. CONTACT FORM — opens the visitor's email app
+   (there is no backend on GitHub Pages, so the form
+   builds a mailto: link addressed to you. To receive
+   messages directly, swap this for Formspree/Web3Forms.)
    ========================================== */
 
 const contactForm = document.getElementById('contactForm');
+const CONTACT_EMAIL = 'musharrafbubere007@gmail.com';
 
 contactForm.addEventListener('submit', (e) => {
   e.preventDefault(); // stop page refresh
 
-  const btn = contactForm.querySelector('button');
+  const data    = new FormData(contactForm);
+  const name    = data.get('name');
+  const email   = data.get('email');
+  const subject = data.get('subject') || 'Portfolio enquiry from ' + name;
+  const body    = data.get('message') + '\n\n— ' + name + ' (' + email + ')';
 
-  // Change button to success state
-  btn.innerHTML = '✅ Message Sent!';
+  window.location.href =
+    'mailto:' + CONTACT_EMAIL +
+    '?subject=' + encodeURIComponent(subject) +
+    '&body=' + encodeURIComponent(body);
+
+  const btn = contactForm.querySelector('button');
+  btn.innerHTML = '✅ Opening your email app…';
   btn.style.background = 'linear-gradient(135deg, #2ecc71, #27ae60)';
   btn.disabled = true;
 
